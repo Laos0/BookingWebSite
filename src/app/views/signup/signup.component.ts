@@ -4,6 +4,7 @@ import { Observable, Subject } from 'rxjs';
 import { User } from 'src/app/libs/models/user';
 import { UserService } from 'src/app/services/user.service';
 import { takeUntil, catchError, take, throttle, throttleTime, debounce, debounceTime } from 'rxjs/operators';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-signup',
@@ -108,7 +109,17 @@ export class SignupComponent implements OnInit {
   }
 
   public createAccount(): void {
-    //this.userService
+    
+
+    //console.log(this.user);
+    this.userService.addUser(this.formSignUp.value).subscribe(
+      (response: User) => {
+        console.log(response);
+    },
+    (error: HttpErrorResponse) => {
+      alert(error.message);
+    }
+    );
   }
 
 

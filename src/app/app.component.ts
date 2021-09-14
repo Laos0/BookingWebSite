@@ -15,7 +15,7 @@ export class AppComponent implements OnInit{
   constructor(private userService: UserService){}
 
   ngOnInit(){
-    this.getUsers();
+    //this.getUsers();
   }
 
   // we are getting a observable so we need to subscribe to it

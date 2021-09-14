@@ -19,7 +19,7 @@ export class UserService {
   }
 
   public addUser(user: User): Observable<User> {
-    return this.http.post<User>(`${this.apiServerUrl}/${this.apiServerUrl}/api/v1/users/add`, user);
+    return this.http.post<User>(`${this.apiServerUrl}/api/v1/users/add`, user);
   }
 
   public updateUser(user: User): Observable<User> {

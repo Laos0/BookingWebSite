@@ -20,7 +20,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<h1>Sign Up</h1>
 		<div class="main-agileinfo">
 			<div class="agileits-top">
-				<form [formGroup]="formSignUp">
+				<form [formGroup]="formSignUp" (ngSubmit)="createAccount()">
 					<div class="form-group">
 						<input type="text" class="form-control" id="firstName_id" placeholder="First Name" [formControl]="nameFC">
 					</div>
