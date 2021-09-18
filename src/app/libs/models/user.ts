@@ -6,7 +6,7 @@ export interface User{
     email: string;
     password: string;
     status: string;
-    isActive: string;
+    isActive: Boolean;
     userRole: string;
     enable: Boolean;
 }

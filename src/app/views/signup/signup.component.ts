@@ -31,9 +31,9 @@ export class SignupComponent implements OnInit {
     phone: '',
     email: '',
     password: '',
-    status: '',
-    isActive: '',
-    userRole: '',
+    status: 'online',
+    isActive: true,
+    userRole: 'USER',
     enable: true
   };
 
@@ -104,7 +104,7 @@ export class SignupComponent implements OnInit {
       );
 
     this.formSignUp = new FormGroup({
-      'name': this.nameFC,
+      'firstName': this.nameFC,
       'lastName': this.lastNameFC,
       'phone': this.phoneFC,
       'email': this.emailFC,

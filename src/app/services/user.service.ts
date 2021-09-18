@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
+
+import { ApiEndPoints } from '../libs/models/ApiEndPoints';
 import { User } from '../libs/models/user';
 
 @Injectable({
@@ -9,25 +10,29 @@ import { User } from '../libs/models/user';
 })
 export class UserService {
 
-  private apiServerUrl = environment.apiBaseUrl;
-  private apiUserUrl: string = "/api/v1/user"
+  // ApiEndPoints.BASEURL = http://localhost:8080
+  // ApiEndPoints.USER = http://localhost:8080/api/v1/users
+
 
   constructor(private http: HttpClient) { }
 
   public getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(`${this.apiServerUrl}/api/v1/users/all`);
+    //return this.http.get<User[]>(ApiEndPoints.USER + '/all');
+    return this.http.get<User[]>(`${ApiEndPoints.BASEURL}/api/v1/users/all`);
   }
 
   public addUser(user: User): Observable<User> {
-    return this.http.post<User>(`${this.apiServerUrl}/api/v1/users/add`, user);
+    //return this.http.post<User>(this.baseUrl + ApiEndPoints.USER + '/add', user);
+    //console.log(ApiEndPoints.USER + '/add');
+    return this.http.post<User>(ApiEndPoints.USER + '/add', user);
   }
 
   public updateUser(user: User): Observable<User> {
-    return this.http.put<User>(`${this.apiServerUrl}/${this.apiServerUrl}/api/v1/users/update`, user);
+    return this.http.put<User>(ApiEndPoints.USER + '/update', user);
   }
 
   public deleteUser(userId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}/${this.apiServerUrl}/api/v1/users/delete/${userId}`);
+    return this.http.delete<void>(`${ApiEndPoints.BASEURL}/api/v1/users/delete/${userId}`);
   }
 
 }
