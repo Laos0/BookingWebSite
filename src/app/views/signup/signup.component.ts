@@ -17,6 +17,7 @@ export class SignupComponent implements OnInit {
 
   public isEmailValid: boolean = false;
   public isPassValid: boolean = false;
+  
   public confirmPassword!: string;
 
   // for unsubscribing to subscriptions on destroy
@@ -25,15 +26,19 @@ export class SignupComponent implements OnInit {
 
   public user: User = {
     id: 0,
-    name: '',
+    firstName: '',
     lastName: '',
     phone: '',
     email: '',
-    password: ''
+    password: '',
+    status: '',
+    isActive: '',
+    userRole: '',
+    enable: true
   };
 
   public nameFC = new FormControl(
-    this.user.name, [
+    this.user.firstName, [
     Validators.required, Validators.minLength(4)
   ]);
 
@@ -68,7 +73,7 @@ export class SignupComponent implements OnInit {
 
     this.nameFC.valueChanges
       .pipe(takeUntil(this.unSub), debounceTime(1000))
-      .subscribe((val: any) => { this.user.name = val; console.log(val) }
+      .subscribe((val: any) => { this.user.firstName = val; console.log(val) }
       );
 
     this.lastNameFC.valueChanges
@@ -111,7 +116,7 @@ export class SignupComponent implements OnInit {
   public createAccount(): void {
     
 
-    //console.log(this.user);
+    // always subscribe when doing http request
     this.userService.addUser(this.formSignUp.value).subscribe(
       (response: User) => {
         console.log(response);
