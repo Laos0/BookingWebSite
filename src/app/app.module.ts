@@ -11,6 +11,7 @@ import { FooterComponent } from './views/footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './views/home/home.component';
+import { BasicViewGuard } from './guard/loginGuard';
 
 
 @NgModule({
@@ -31,7 +32,7 @@ import { HomeComponent } from './views/home/home.component';
     FormsModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [BasicViewGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

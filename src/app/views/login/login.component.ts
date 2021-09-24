@@ -2,9 +2,10 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { Observable, Subject } from 'rxjs';
 import { debounceTime, takeUntil } from 'rxjs/operators';
-import { User } from 'src/app/libs/models/user';
+import { AuthenticationResponse } from 'src/app/libs/models/AutheticationResponse';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
 
 @Component({
@@ -36,7 +37,8 @@ export class LoginComponent implements OnInit {
     Validators.required, Validators.minLength(4)
   ]);
 
-  constructor(private authService: AuthServiceService, private route: Router) { }
+  constructor(private authService: AuthServiceService, private route: Router, private cookie: CookieService) { 
+  }
 
   
 
@@ -65,21 +67,26 @@ export class LoginComponent implements OnInit {
     return this.authService;
   }
 
+
+  //  NOTE: response: User instead of response: AuthenticationRequest
   public login(): void {
     //console.log(this.formLogin.value)
     // always subscribe when doing http request
-    this.authService.login(this.formLogin.value).subscribe(
-      (response: User) => {
+    this.authService.testLogin(this.formLogin.value).subscribe(
+      (response: AuthenticationResponse) => {
         console.log(response);
 
         // if login is successfull hide the element tag for login fail
         this.loginFail = false;
         this.authService.isLoggedIn = true;
+        
+
+        this.cookie.set("token", response.jwt);
 
         if(this.authService.isLoggedIn == true){
           this.route.navigate(['/home']);
         }
-        this.authService.setName(response.email);
+        //this.authService.setName(response.email);
         
     },
     (error: HttpErrorResponse) => {
