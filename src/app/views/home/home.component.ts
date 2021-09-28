@@ -13,7 +13,11 @@ export class HomeComponent implements OnInit {
   constructor(private authService: AuthServiceService) { }
 
   ngOnInit(): void {
-    this.name = this.authService.name
+    this.name = this.authService.name;
+
+    if(this.name == null){
+      this.name = "Guest";
+    }
   }
 
 }

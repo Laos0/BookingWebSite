@@ -1,3 +1,9 @@
+/*
+
+  This class is in charge of the login form.  
+  Sending its email and password to the backend to be validated
+*/
+
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -78,13 +84,13 @@ export class LoginComponent implements OnInit {
 
         // if login is successfull hide the element tag for login fail
         this.loginFail = false;
-        this.authService.isLoggedIn = true;
+        this.authService.isLoggedIn = true; 
         
 
         this.cookie.set("token", response.jwt);
 
         if(this.authService.isLoggedIn == true){
-          this.route.navigate(['/home']);
+          this.route.navigate(['']);
         }
         //this.authService.setName(response.email);
         

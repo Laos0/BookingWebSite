@@ -1,3 +1,7 @@
+/*
+  A User service class that calls the backend apis for user basic functionalities
+*/
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';

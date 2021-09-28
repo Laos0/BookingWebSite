@@ -1,3 +1,10 @@
+/*
+    This guard class allows us to store cookies into the user's broswer
+    The cookie will have the jwt token localhost:4200 
+    The token will then be sent to the backend using authService where it will be validated to return a true or false
+    Any fail validation will result in the users having to login to proceed into the desire pages.  Ex: home page
+*/
+
 
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from "@angular/router";
 //import {ViewRoutes} from "../view-routes";
@@ -6,7 +13,7 @@ import { CookieService } from "ngx-cookie-service";
 import { HttpClient } from "@angular/common/http";
 import { AuthServiceService } from "../services/auth-service.service";
 import { Observable, of, TimeoutError } from "rxjs";
-import { map, timeout } from "rxjs/operators";
+import { catchError, map, timeout } from "rxjs/operators";
 
 
 /**
@@ -29,12 +36,16 @@ export class BasicViewGuard implements CanActivate {
                 console.log("Successful guard")
                 return true;
             }else{
+                //this.cookie.delete('token');
                 this.router.navigate(["login"]);
                 console.log("Failed Guard");
                 return false;
             }
     }
-    ));
+    ), catchError((e:any) =>{
+      this.router.navigate(["login"]);
+      return of(false);
+    }));
 
   }
 

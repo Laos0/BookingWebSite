@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { AuthenticationRequest } from '../libs/models/AuthenticationRequest';
 import { AuthenticationResponse } from '../libs/models/AutheticationResponse';
 import { User } from '../libs/models/user';
+import { UserDetails } from '../libs/models/userDetails';
 import { HttpWrapperService } from './apis/http-wrapper.service';
 
 @Injectable({
@@ -16,6 +17,8 @@ export class AuthServiceService {
 
   private apiServerUrl = environment.apiBaseUrl;
   public isLoggedIn: boolean = false; // turn false when logged off
+
+  private userDetails!: UserDetails;
 
   public headers = {'Authorization': 'application/json'};
 
@@ -39,7 +42,7 @@ export class AuthServiceService {
 
   // TODO: implement a logout method
   public logout(): void{
-
+    
   }
 
   public setName(name: string): void{

@@ -12,6 +12,8 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './views/home/home.component';
 import { BasicViewGuard } from './guard/loginGuard';
+import { AccountComponent } from './views/account/account.component';
+import { AboutComponent } from './views/about/about.component';
 
 
 @NgModule({
@@ -22,7 +24,9 @@ import { BasicViewGuard } from './guard/loginGuard';
     LoginComponent,
     SignupComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
+    AccountComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
