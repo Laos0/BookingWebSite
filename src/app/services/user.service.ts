@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 
 import { ApiEndPoints } from '../libs/models/ApiEndPoints';
 import { User } from '../libs/models/user';
+import { UserDetails } from '../libs/models/userDetails';
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +38,11 @@ export class UserService {
 
   public deleteUser(userId: number): Observable<void> {
     return this.http.delete<void>(`${ApiEndPoints.BASEURL}/api/v1/users/delete/${userId}`);
+  }
+
+  public getUserDetails(token: string): Observable<User> {
+    //return this.http.get<User[]>(ApiEndPoints.USER + '/all');
+    return this.http.post<User>(`http://localhost:8080/api/v1/user/details`, token);
   }
 
 }
