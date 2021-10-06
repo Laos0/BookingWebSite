@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { CalendarEvent, CalendarView } from 'angular-calendar';
 
 @Component({
   selector: 'app-calendar',
@@ -7,13 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CalendarComponent implements OnInit {
 
+  view: CalendarView = CalendarView.Month;
+
+  viewDate: Date = new Date();
+
+  events: CalendarEvent[] = [];
+
+  clickedDate!: Date;
+
+  clickedColumn!: number;
+
   constructor() { }
 
-  ngOnInit(): void {
-
-    
-  }
-
+  ngOnInit(): void {}
   
 
 }

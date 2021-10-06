@@ -26,7 +26,7 @@ export class AccountComponent implements OnInit {
     // then set its fields 
     this.userService.getUserDetails(this.cookie.get('token')).subscribe(
       (response: User) => {
-        console.log(response);
+        //console.log(response);
         this.firstName = response.firstName;
         this.lastName = response.lastName;
         this.phone = response.phone;

@@ -40,6 +40,7 @@ export class UserService {
     return this.http.delete<void>(`${ApiEndPoints.BASEURL}/api/v1/users/delete/${userId}`);
   }
 
+  // TODO: fix the endpoint using ApiEndpoints
   public getUserDetails(token: string): Observable<User> {
     //return this.http.get<User[]>(ApiEndPoints.USER + '/all');
     return this.http.post<User>(`http://localhost:8080/api/v1/user/details`, token);

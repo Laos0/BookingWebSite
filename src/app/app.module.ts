@@ -14,7 +14,9 @@ import { HomeComponent } from './views/home/home.component';
 import { BasicViewGuard } from './guard/loginGuard';
 import { AccountComponent } from './views/account/account.component';
 import { AboutComponent } from './views/about/about.component';
-
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { AboutComponent } from './views/about/about.component';
     RouterModule,
     ReactiveFormsModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
+    BrowserAnimationsModule
   ],
   providers: [BasicViewGuard],
   bootstrap: [AppComponent]

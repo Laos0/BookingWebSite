@@ -11,6 +11,7 @@ import { UserService } from './services/user.service';
 export class AppComponent implements OnInit{
   title = 'bookingapp';
   public users!: User[];
+  
 
   constructor(private userService: UserService){}
 
