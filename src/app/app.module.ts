@@ -17,6 +17,8 @@ import { AboutComponent } from './views/about/about.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonModule } from '@angular/common';
+import { CalendarHeaderComponent } from './utils/calendar-header/calendar-header.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FooterComponent,
     HomeComponent,
     AccountComponent,
-    AboutComponent
+    AboutComponent,
+    CalendarHeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     AppRoutingModule,
     CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    CommonModule
   ],
   providers: [BasicViewGuard],
   bootstrap: [AppComponent]
